@@ -1,0 +1,22 @@
+<h1>Itens do carrinho</h1>
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>Nome</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+            <th class="text-right">{{ cart.amount | currency:"USD$" }}</th>
+        </tr>
+        <tr ng-repeat="item in cart.items">
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.amount | currency:"USD$" }}</td>
+            <td class="text-right">
+				<a class="btn btn-warning" 
+                    ng-click="removerItemCarrinho(item.id)">
+                    Remover
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>

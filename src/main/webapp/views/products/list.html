@@ -1,0 +1,25 @@
+<h1>Produtos</h1>
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th class="text-right">
+                <a class="btn btn-success" 
+                    ui-sref="shoppingcart">
+                    Carrinho
+                </a>
+            </th>
+        </tr>
+        <tr ng-repeat="product in products">
+            <td>{{ product.name }}</td>
+            <td>{{ product.price | currency:"USD$" }}</td>
+            <td class="text-right">
+				<a class="btn btn-warning" 
+                    ng-click="addItem(product)">
+                    Adicionar
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
