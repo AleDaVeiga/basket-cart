@@ -57,51 +57,33 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.5</version> <!-- ou a última versão disponível -->
+			<version>1.7.5</version>
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>cart</finalName>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compile-plugin</artifactId>
-					<version>3.1</version>
+		<plugins>
+		  <plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-dependency-plugin</artifactId>
+			<version>2.10</version>
+			<executions>
+			  <execution>
+				<id>copy-dependencies</id>
+				<phase>package</phase>
+					<goals><goal>copy</goal></goals>
 					<configuration>
-						<source>1.7</source>
-						<target>1.7</target>
-						<failOnMissingWebXml>false</failOnMissingWebXml>
-						<outputDirectory>target/wildfly-8.2.0.Final/standalone/deployments</outputDirectory>
-						<warName>ROOT</warName>
+						<artifactItems>
+							<artifactItem>
+								<groupId>com.github.jsimone</groupId>
+								<artifactId>webapp-runner</artifactId>
+								<version>8.0.39.0</version>
+								<destFileName>webapp-runner.jar</destFileName>
+							</artifactItem>
+						</artifactItems>
 					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<version>2.10</version>
-					<executions>
-						<execution>
-							<id>unpack</id>
-							<phase>package</phase>
-							<goals>
-								<goal>unpack</goal>
-							</goals>
-							<configuration>
-								<artifactItems>
-									<artifactItem>
-										<groupId>org.wildfly</groupId>
-										<artifactId>wildfly-dist</artifactId>
-										<version>8.2.0.Final</version>
-										<type>zip</type><overWrite>false</overWrite>
-										<outputDirectory>target</outputDirectory>
-									</artifactItem>
-								</artifactItems>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
+			  </execution>
+			</executions>
+		  </plugin>
+		</plugins>
+	  </build>
 </project>
