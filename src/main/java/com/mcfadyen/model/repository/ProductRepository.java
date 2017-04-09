@@ -35,6 +35,6 @@ public class ProductRepository implements Serializable {
 	}
 
 	public List<Product> findAll() {
-		return new ArrayList<>(this.productList.values());
+		return new ArrayList<Product>(this.productList.values());
 	}
 }
